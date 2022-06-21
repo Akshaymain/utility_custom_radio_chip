@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:utility_custom_radio_chip/components/custom_radio_chip.dart';
 
@@ -68,13 +70,17 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             CustomChips(
-              chipType: ChipType.check,
-              chipItems: productColors,
-            ),
+                chipType: ChipType.check,
+                chipItems: productColors,
+                selectedChip: (index) {
+                  print(index);
+                }),
             CustomChips(
-              chipType: ChipType.text,
-              chipItems: productSizes,
-            )
+                chipType: ChipType.text,
+                chipItems: productSizes,
+                selectedChip: (index) {
+                  print(index);
+                })
           ],
         ),
       ),

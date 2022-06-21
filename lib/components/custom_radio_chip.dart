@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:utility_custom_radio_chip/constants/colors.dart';
 
@@ -6,8 +8,13 @@ enum ChipType { text, check }
 class CustomChips extends StatefulWidget {
   final ChipType chipType;
   final List<dynamic> chipItems;
+  final Function(int index) selectedChip;
 
-  const CustomChips({Key? key, required this.chipType, required this.chipItems})
+  const CustomChips(
+      {Key? key,
+      required this.chipType,
+      required this.chipItems,
+      required this.selectedChip})
       : super(key: key);
 
   @override
@@ -35,6 +42,7 @@ class CustomChipsState extends State<CustomChips> {
                     setState(() {
                       chipClicked.fillRange(0, widget.chipItems.length, false);
                       chipClicked[element.key] = true;
+                      widget.selectedChip(element.key);
                     });
                   },
                   child: Container(
